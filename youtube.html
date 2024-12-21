@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>YouTube clone</title>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+        <style>
+            p {
+                font-family: Roboto, Arial;
+                margin-top: 0px;
+                margin-bottom: 0px;
+            }
+            body {
+                margin: 0px;
+                padding-top: 65px;
+                padding-left: 98px;
+                padding-right: 20px;
+                margin-bottom: 100px;
+            }
+            .header-section {
+                background-color: white;
+                height: 55px;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                margin-bottom: 50px;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                z-index: 1;
+            }
+            .left-section {
+                display: flex;
+                align-items: center;
+            }
+            .hamburger-menu {
+                height: 25px;
+                margin-left: 24px;
+                margin-right: 24px;
+                cursor: pointer;
+            }
+            .logo {
+                height: 20px;
+                cursor: pointer;
+            }
+            .middle-section {
+                flex: 1;
+                margin-left: 100px;
+                margin-right: 100px;
+                display: flex;
+                align-items: center;
+                padding-left: 180px;
+            }
+            .textbox {
+                height: 34px;
+                flex: 1;
+                font-size: 16px;
+                padding-left: 15px;
+                border-width: 1px;
+                border-style: solid;
+                border-color: rgb(196, 190, 190);
+                border-radius: 2px;
+                box-shadow: inset 1px 2px 3px rgba(0, 0, 0, 0.05);
+                border-bottom-left-radius: 17px;
+                border-top-left-radius: 17px;
+                width: 0;
+                min-width: 5px;
+                max-width: 522px;
+            }
+            .search-button {
+                width: 64px;
+                height: 38px;
+                background-color: rgb(240, 240, 240);
+                border:  1px solid rgb(196, 190, 190);
+                border-radius: 2px;
+                margin-left: -2px;
+                margin-right: 15px;
+                border-top-right-radius: 17px;
+                border-bottom-right-radius: 17px;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .search-button::placeholder {
+                font-size: 18px;
+                font-family: Roboto, Arial;
+            }
+            .search_button {
+                border: none;
+                height: 30px;
+                width: 35px;
+                padding-left: 12px;
+                position: absolute;
+                cursor: pointer;
+            }
+            .voice-search-button {
+                width: 35px;
+                height: 35px;
+                border-radius: 18px;
+                border: none;
+                cursor: pointer;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .mic {
+                height: 20px;
+                padding-top: 2px;
+            }
+            .right-section {
+                width: 220px;
+                flex-shrink: 0;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding-left: 150px;
+            }
+            .create {
+                height: 25px;
+                cursor: pointer;
+            }
+            .create-button {
+                border: none;
+                background-color: white;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .notifications {
+                height: 25px;
+                cursor: pointer;
+            }
+            .notification-counter {
+                background-color: rgb(205, 6, 6);
+                color: white;
+                border: none;
+                border-radius: 8px;
+                font-size: 10px;
+                font-weight: 500;
+                text-align: center;
+                position: absolute;
+                top: -2px;
+                right: 2px;
+                padding: 2px 5px 2px 5px;
+            }
+            .notifications-button {
+                border: none;
+                background-color: white;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .dp {
+                height: 32px;
+                width: 32px;
+                border-radius: 16px;
+                background-color: black;
+                border-color: black;
+                border-style: solid;
+                margin-right: 20px;
+            }
+            .side-bar {
+                position: fixed;
+                top: 65px;
+                bottom: 0px;
+                left: 0px;
+                background-color: white;
+                width: 75px;
+                padding-top: 5px;
+            }
+            .thumbnail-1, .thumbnail-2, .thumbnail-3, .thumbnail-4, .thumbnail-5, .thumbnail-6, .thumbnail-7, .thumbnail-8 {
+                object-fit: cover;
+                width: 100%;
+                cursor: pointer;
+                vertical-align: top;
+                border-radius: 10px;
+            }
+            .video-title-1, .video-title-2, .video-title-3, .video-title-4, .video-title-5, .video-title-6, .video-title-7, .video-title-8, a {
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 20px;
+                margin-bottom: 20px;
+                cursor: pointer;
+                text-decoration: none;
+                color: black;
+            }
+            .video-stats-1, .video-stats-2, .video-stats-3, .video-stats-4, .video-stats-5, .video-stats-6, .video-stats-7, .video-stats-8 {
+                font-size: 14px;
+                color: rgb(96, 96, 96);
+                cursor: pointer;
+            }
+            .video-author-1, .video-author-2, .video-author-3, .video-author-4, .video-author-5, .video-author-6, .video-author-7, .video-author-8 {
+                font-size: 14px;
+                color: rgb(96, 96, 96);
+                margin-bottom: 5px;
+                cursor: pointer;
+            }
+            .pfp-1, .pfp-2, .pfp-3, .pfp-4, .pfp-5, .pfp-6, .pfp-7, .pfp-8 {
+                width: 50px;
+                vertical-align: top;
+            }
+            .pfp_1, .pfp_2, .pfp_3, .pfp_4, .pfp_5, .pfp_6, .pfp_7, .pfp_8 {
+                width: 40px;
+                border-radius: 50px;
+                cursor: pointer;
+            }
+            .thumbnail-row-1, .thumbnail-row-2, .thumbnail-row-3, .thumbnail-row-4, .thumbnail-row-5, .thumbnail-row-6, .thumbnail-row-7, .thumbnail-row-8 {
+                margin-bottom: 13px;
+                position: relative;
+            }
+            .video-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                column-gap: 15px;
+                row-gap: 35px;
+            }
+            @media (max-width: 800px) {
+                .video-grid {
+                    grid-template-columns: 1fr 1fr;
+                }
+            }
+            @media (min-width: 1200px) {
+                .video-grid {
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                }
+            }
+            .timestamp-1, .timestamp-2, .timestamp-3, .timestamp-4, .timestamp-5, .timestamp-6, .timestamp-7, .timestamp-8 {
+                background-color: black;
+                color: white;
+                border-color: black;
+                border-style: solid;
+                font-weight: 500;
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                border-radius: 5px;
+                opacity: 0.8;
+            }
+            .sidebar-link {
+                height: 74px;
+                margin-bottom: 1px;
+                background-color: white;
+                cursor: pointer;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .sidebar-link img {
+                height: 24px;
+                margin-bottom: 7px;
+            }
+            .sidebar-link div {
+                font-size: 10px;
+            }
+            .sidebar-link:hover {
+                background-color: rgb(235, 235, 235);
+            }
+            .search-button .tooltip,
+            .voice-search-button .tooltip,
+            .create-button .tooltip,
+            .notifications-button .tooltip {
+                padding: 4px 8px 4px 8px;
+                background-color: gray;
+                color: white;
+                border-radius: 2px;
+                font-size: 12px;
+                position: absolute;
+                bottom: -30px;
+                opacity: 0;
+                transition: opacity 0.15s;
+                pointer-events: none;
+                white-space: nowrap;
+            }
+            .search-button:hover .tooltip,
+            .voice-search-button:hover .tooltip,
+            .create-button:hover .tooltip,
+            .notifications-button:hover .tooltip {
+                opacity: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header-section">
+            <div class="left-section">
+                <img src="icons/menu.svg" class="hamburger-menu">
+                <img src="icons/youtube-logo.svg" class="logo">
+            </div>
+            <div class="middle-section">
+                <input type="text" placeholder="Search" class="textbox">
+                <button class="search-button" style="display: flex; align-items: center;">
+                    <img src="icons/search.svg" class="search_button">
+                    <div class="tooltip">Search</div>
+                </button>
+                <button class="voice-search-button">
+                    <img src="icons/voice-search-icon (1).svg" class="mic">
+                    <div class="tooltip">Search with your voice</div>
+                </button>
+            </div>
+            <div class="right-section">
+                <div>
+                    <button class="create-button">
+                        <img src="icons/create.svg" class="create">
+                        <div class="tooltip">Create</div>
+                    </button> 
+                </div>
+                <div style="position: relative;">
+                    <button class="notifications-button">
+                        <img src="icons/notifications.svg" class="notifications">
+                        <div class="tooltip">Notifications</div>
+                        <div class="notification-counter">7</div>
+                    </button>
+                </div>
+                <div><button class="dp"></button></div>
+            </div>
+            <div></div>
+        </div>
+
+        <div class="side-bar">
+            <div class="sidebar-link">
+                <img src="icons/home.svg" class="home">
+                <div>Home</div>
+            </div>
+            <div class="sidebar-link">
+                <div>Shorts</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/subscriptions.svg" class="subscriptions">
+                <div>Subscriptions</div>
+            </div>
+            <div class="sidebar-link">
+                <img src="icons/you.svg" class="you">
+                <div>You</div>
+            </div>
+        </div>
+
+        <div class="video-grid">
+            <div class="video-preview-1">
+                <div class="thumbnail-row-1" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-1.webp" class="thumbnail-1">
+                    <div><button class="timestamp-1">4:05</button></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-1">
+                        <img src="pfp/pfp-1.jpg" class="pfp_1">
+                    </div>
+                    <div class="video-info-1">
+                        <a href="https://www.youtube.com/watch?v=JqwPCzJnYyY" class="video-title-1"><p>Stray Kids "MEGAVERSE" Video</p></a>
+                        <a href="https://www.youtube.com/channel/UC9rMiEjNaCSsebs31MRDCRA" class="video-author-1"><p>Stray Kids &#10003;</p></a>
+                        <p class="video-stats-1">34M views &#183; 3 months ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="video-preview-2">
+                <div class="thumbnail-row-2" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-2.webp" class="thumbnail-2">
+                    <div><button class="timestamp-2">16:24</button></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-2">
+                        <img src="pfp/pfp-2.jpg" class="pfp_2">
+                    </div>
+                    <div class="video-info-2">
+                        <a class="video-title-2" href=""><p>reacting to Daisy Keech... this really needs to stop.</p></a>
+                        <a href="https://www.youtube.com/@stephanielange" class="video-author-2"><p>Stephanie Lange &#10003;</p></a>
+                        <p class="video-stats-2">1.2M views &#183; 1 year ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="video-preview-3">
+                <div class="thumbnail-row-3" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-3.webp" class="thumbnail-3">
+                    <div><button class="timestamp-3">17:08</button></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-3">
+                        <img src="pfp/pfp-3.jpg" class="pfp_3">
+                    </div>
+                    <div class="video-info-3">
+                        <a class="video-title-3" href=""><p>TikTok's 'Small Business Owners' Are DELUSIONAL...</p></a>
+                        <a class="video-author-3" href="https://www.youtube.com/@HayloHayley"><p>Haylo Hayley &#10003;</p></a>
+                        <p class="video-stats-3">342K views &#183; 3 weeks ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="video-preview-4">
+                <div class="thumbnail-row-4" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-4.webp" class="thumbnail-4">
+                    <div><button class="timestamp-4">11:40</button></div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-4">
+                        <img src="pfp/pfp-4.jpg" class="pfp_4">
+                    </div>
+                    <div class="video-info-4">
+                        <p class="video-title-4">this influencer REALLY messed up...(review gone wrong)</p>
+                        <p class="video-author-4">Tea Spill &#10003;</p>
+                        <p class="video-stats-4">248K views &#183; 12 days ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="video-preview-5">
+                <div class="thumbnail-row-5" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-5.webp" class="thumbnail-5">
+                    <div><button class="timestamp-5">20:20</button></div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-5">
+                        <img src="pfp/pfp-5.jpg" class="pfp_5">
+                    </div>
+                    <div class="video-info-5">
+                        <p class="video-title-5">THEY'RE A 10 BUT... they aren’t your valentine</p>
+                        <p class="video-author-5">Sturniolo Triplets &#10003;</p>
+                        <p class="video-stats-5">1.5M views &#183; 3 weeks ago</p>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="video-preview-6">
+                <div class="thumbnail-row-6" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-6.webp" class="thumbnail-6">
+                    <div><button class="timestamp-6">14:29</button></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-6">
+                        <img src="pfp/pfp-6.jpg" class="pfp_6">
+                    </div>
+                    <div class="video-info-6">
+                        <p class="video-title-6">The SAD BEIGE Moms of TikTok</p>
+                        <p class="video-author-6">FunkyFrogBait &#10003;</p>
+                        <p class="video-stats-6">2.8M views &#183; 1 month ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-preview-7">
+                <div class="thumbnail-row-7" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-7.webp" class="thumbnail-7">
+                    <div><button class="timestamp-7">23:54</button></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-7">
+                        <img src="pfp/pfp-7.jpg" class="pfp_7">
+                    </div>
+                    <div class="video-info-7">
+                        <p class="video-title-7">Mikayla Nogueira’s "Lipstick Gate" is VERY SUSPICIOUS!</p>
+                        <p class="video-author-7">Angelika Oles &#10003;</p>
+                        <p class="video-stats-7">93K views &#183; 2 weeks ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="video-preview-8">
+                <div class="thumbnail-row-8" style="display: flex; flex-direction: column;">
+                    <img src="thumbnails\thumbnail-8.webp" class="thumbnail-8">
+                    <div><button class="timestamp-8">11:33</button></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 50px 1fr">
+                    <div class="pfp-8">
+                        <img src="pfp/pfp-8.jpg" class="pfp_8">
+                    </div>
+                    <div class="video-info-8">
+                        <p class="video-title-8">JUSTIN BIEBER FANS ARE WORRIED (hailey's dad asks for prayers)</p>
+                        <p class="video-author-8">Spill Sesh &#10003;</p>
+                        <p class="video-stats-8">151K views &#183; 1 day ago</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
